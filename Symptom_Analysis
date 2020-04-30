@@ -3,7 +3,7 @@ start :- condition(Disease),
       write('Patient may have: '),
       write(Disease),
       nl.
-
+ 
 condition(bronchitis) :-
     has(fever),
     has(cough),
