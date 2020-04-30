@@ -8,7 +8,7 @@ condition(bronchitis) :-
     has(fever),
     has(cough),
     has(shortness_of_breath),
-   	has(chills),
+    has(chills),
     has(pain_or_pressure_in_chest_area),
     has(tiredness_or_fatigue),
 	  has(cough_producing_yellow/green_mucus).
@@ -23,7 +23,7 @@ condition(coronavirus) :-
     has(fever),
     has(cough),
     has(shortness_of_breath),
-	  has(chills),
+    has(chills),
     has(muscle_pain_aches_or_discomfort),
     has(sore_throat),
     has(loss_of_taste_or_smell),
@@ -38,7 +38,7 @@ condition(pneumonia) :-
     has(fever),
     has(cough),
     has(shortness_of_breath),
-  	has(chills),
+    has(chills),
     has(muscle_pain_aches_or_discomfort),
     has(sore_throat),
     has(trouble_breathing),
@@ -78,8 +78,8 @@ ask(Question) :-
       ->
        assert(no(Question)), fail;
   
-  	write('Invalid Response: Please Say Yes or No to the question. '), nl,
-    ask(Question)
+       write('Invalid Response: Please Say Yes or No to the question. '), nl,
+       ask(Question)
 	).
 
 has(S) :-
