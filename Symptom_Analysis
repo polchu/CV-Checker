@@ -71,17 +71,17 @@ ask(Question) :-
     write('Do you have the following symptom(s): '),
     write(Question),
     write('? '),
-    read(Response),				$ take in user input as variable Response.
+    read(Response),				% take in user input as variable Response.
     nl,
    ( (Response == yes ; Response == y)	
       ->
-       assert(yes(Question)) ;			$ if Response is equal to "yes" or "y" then the fact would be true
+       assert(yes(Question)) ;			% if Response is equal to "yes" or "y" then the fact would be true
    (Response == no ; Response == n)
       ->
-       assert(no(Question)), fail;		$ if Response is equal to "no" or "n" then the fact is not true and the program moves to the next branch in the decision tree
+       assert(no(Question)), fail;		% if Response is equal to "no" or "n" then the fact is not true and the program moves to the next branch in the decision tree
   
        write('Invalid Response: Please Say Yes or No to the question. '), nl,
-       ask(Question)
+       ask(Question)				% Recursively call back the rule if there was invalid input from the user
 	).
 
 % rule that is affected by user input as the program is executed, 
@@ -89,11 +89,11 @@ ask(Question) :-
 % traversal by determining the facts of every condition's rule and uses
 % backtracking to ask about the verifiability of every disease
 has(S) :-
-   (yes(S)	$ if yes(S), then the fact is true
+   (yes(S)	% if yes(S), then the fact is true
     ->
     true ;
-    (no(S)	$ if no(S), then the fact is not true 
+    (no(S)	% if no(S), then the fact is not true 
     ->
      fail ;
-     ask(S))).
+     ask(S))).	% if neither yes(S) or no(S) are reached, then ask about the symptom
  
