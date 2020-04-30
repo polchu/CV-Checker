@@ -4,6 +4,7 @@ start :- condition(Disease),
       write(Disease),
       nl.
  
+ % rules defined from the knowledge base, where the user is queried through all the facts and runs along the decision tree
 condition(bronchitis) :-
     has(fever),
     has(cough),
@@ -65,28 +66,33 @@ condition(unknown) :-
     write("Cannot determine disease. Please contact your doctor for detailed checkup."),
     nl.
 
+% rule that asks the user if they have the symptom, which would be the facts defined in every rule of the database.
 ask(Question) :-
     write('Do you have the following symptom(s): '),
     write(Question),
     write('? '),
-    read(Response),
+    read(Response),				$ take in user input as variable Response.
     nl,
-   ( (Response == yes ; Response == y)
+   ( (Response == yes ; Response == y)	
       ->
-       assert(yes(Question)) ;
+       assert(yes(Question)) ;			$ if Response is equal to "yes" or "y" then the fact would be true
    (Response == no ; Response == n)
       ->
-       assert(no(Question)), fail;
+       assert(no(Question)), fail;		$ if Response is equal to "no" or "n" then the fact is not true and the program moves to the next branch in the decision tree
   
        write('Invalid Response: Please Say Yes or No to the question. '), nl,
        ask(Question)
 	).
 
+% rule that is affected by user input as the program is executed, 
+% this rule is the backbone of the decision tree and determines the 
+% traversal by determining the facts of every condition's rule and uses
+% backtracking to ask about the verifiability of every disease
 has(S) :-
-   (yes(S) 
+   (yes(S)	$ if yes(S), then the fact is true
     ->
     true ;
-    (no(S)
+    (no(S)	$ if no(S), then the fact is not true 
     ->
      fail ;
      ask(S))).
