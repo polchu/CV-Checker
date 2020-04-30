@@ -11,8 +11,8 @@ condition(bronchitis) :-
     has(chills),
     has(pain_or_pressure_in_chest_area),
     has(tiredness_or_fatigue),
-	  has(cough_producing_yellow/green_mucus).
-
+    has(cough_producing_yellow/green_mucus).
+    
 condition(asthma) :-
     has(cough),
     has(shortness_of_breath),
